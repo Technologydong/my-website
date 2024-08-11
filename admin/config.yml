@@ -1,17 +1,83 @@
-backend:
-  name: git-gateway
-  branch: main
+# Site settings
+title: "Your awesome title"
+email: your-email@example.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://nimble-pudding-01b199.netlify.app" # the base hostname & protocol for your site
 
-media_folder: "static/img"
-public_folder: "/img"
+# Build settings
+markdown: kramdown
+theme: minima
 
+# Permalinks
+permalink: /:year/:month/:day/:title/
+
+# Directory settings
+source: .
+destination: ./_site
+plugins_dir: ./_plugins
+layouts_dir: ./_layouts
+data_dir: ./_data
+includes_dir: ./_includes
+
+# Custom includes
+include: ["_pages"]
+
+# Exclusions
+exclude: ["README.md", "Gemfile", "Gemfile.lock", "node_modules", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
+
+# Gems
+gems:
+  - jekyll-feed
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Collections
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "_posts"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+  blog:
+    output: true
+    permalink: /:collection/:name
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: "Your Name"
+
+# Front matter defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Your Name"
+
+# Sass options
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Kramdown options
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# SEO and social
+twitter_username: your_twitter_handle
+github_username:  your_github_handle
+disqus:
+  shortname: your_disqus_shortname
+google_analytics: UA-XXXXXXXX-X
